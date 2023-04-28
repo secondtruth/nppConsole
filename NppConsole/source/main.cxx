@@ -1,6 +1,6 @@
 /*
 This file is part of Notepad++ console plugin.
-Copyright ©2011 Mykhajlo Pobojnyj <mpoboyny@web.de>
+Copyright Â©2011 Mykhajlo Pobojnyj <mpoboyny@web.de>
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -169,6 +169,7 @@ INT_PTR CALLBACK DialogProc(HWND hwndDlg, UINT uMsg,
                 }
 
 				case IDC_BUTTON_APPLY:
+				case IDOK :
 				{
 					TCHAR cmd[MAX_PATH]={0};
 					int cc=GetWindowText(GetDlgItem(hwndDlg, IDC_EDIT_LINE), cmd, MAX_PATH);
@@ -195,8 +196,9 @@ INT_PTR CALLBACK DialogProc(HWND hwndDlg, UINT uMsg,
 					g_staticWnd.SetCtrlCAction(g_ctrlCaction);
 					IFR(!g_staticWnd.Restart(g_savedCmd, g_savedLine), TRUE);
 				}
+				if (wParam == IDC_BUTTON_APPLY) {
 					return TRUE;
-				case IDOK :
+				}
 				case IDCANCEL :
 					::EndDialog(hwndDlg, IDOK);
 					return TRUE;
